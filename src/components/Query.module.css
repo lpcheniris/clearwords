@@ -1,0 +1,15 @@
+.queryWrapper {
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #3fecdc;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.sound {
+    cursor: pointer;
+}
