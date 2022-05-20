@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import QueryReducer from './reducer/QuerySlice';
+import WordsSlice from './reducer/WordsSlice';
 
 export const store = configureStore({
   reducer: {
-    query: QueryReducer
+    query: QueryReducer,
+    words: WordsSlice
   },
 });
 
