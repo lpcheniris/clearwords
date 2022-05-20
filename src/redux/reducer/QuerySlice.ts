@@ -30,11 +30,7 @@ export const favoriteAsync = createAsyncThunk(
 export const querySlice = createSlice({
   name: 'query',
   initialState,
-  reducers: {
-    increment: (state) => {
-      // state.value = { data: "test" };
-    },
-  },
+  reducers: {  },
   extraReducers: (builder: any) => {
     builder
       .addCase(queryAsync.fulfilled, (state: any, action: any) => {
