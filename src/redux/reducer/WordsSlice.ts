@@ -5,21 +5,30 @@ import { generateRememberList} from '../../utils'
 
 export interface WordsState {
   wordList: [],
-  rememberList: []
+  rememberList: [],
+  updateError: any
 }
 
 const initialState: WordsState = {
   wordList: [],
-  rememberList: []
+  rememberList: [],
+  updateError: null
 };
 export const wordListAsync = createAsyncThunk(
   'word/fetchWordList',
   async () => {
-    const response = await fetch('/word/').then(response => response.json());
+    const response = await fetch('/word').then(response => response.json());
     return response;
   }
 );
 
+export const updateWordStatusAsync = createAsyncThunk(
+  'word/updateStatus',
+  async (data:any) => {
+    const response = await fetch(`/word/${data.query}`, { method: "put", body: JSON.stringify(data.status), headers: {"content-type": "application/json"}})
+    return response 
+  }
+)
 
 export const wordsSlice = createSlice({
   name: 'words',
@@ -31,7 +40,11 @@ export const wordsSlice = createSlice({
         state.wordList = action.payload;
         state.rememberList = generateRememberList(action.payload)
       })
-  },
+      .addCase(updateWordStatusAsync.fulfilled, (state: any, action: any) => {
+        state.updateError = action.payload;
+        
+      })
+  }
 })
 
 export const selectRememberList = (state: RootState) => state.words.rememberList;

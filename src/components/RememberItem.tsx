@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 export default function RememberItem(props: any) {
     const data = props.data
-    console.log(data)
+    // console.log(data)
     const [isRight, setIsRight] = useState(false)
     const [selectOption, setSelectOption] = useState("")
     const phoneticAudio = new Audio(getAudioUrl(data.word))
@@ -27,7 +27,7 @@ export default function RememberItem(props: any) {
         if(v === data.correct) {
             setIsRight(true)
             setTimeout(() => {
-                props.handleSelectRight()
+                props.handleSelectRight({query: data.query, status: { [data.type]: true }})
             }, 1000)
         } else {
             setIsRight(false)

@@ -23,32 +23,36 @@ export const generateRememberList = (wordList: Array<any>) => {
         optionList =optionList.sort(() => 0.5 - Math.random())
         let enOption = optionList.map(item => item.explains.join(" "))
         let zhOption = optionList.map(item => item.query)
+        
         if (!v.enTozh) {
             result.push({
                 type: "enTozh",
                 word: v.query,
                 options: enOption,
-                correct: v.explains.join(" ")
+                correct: v.explains.join(" "),
+                query: v.query
             })
         }
-        // if (!v.zhToen) {
-        //     result.push({
-        //         type: "zhToen",
-        //         word: v.explains.join(" "),
-        //         options: zhOption,
-        //         correct: v.query
+        if (!v.zhToen) {
+            result.push({
+                type: "zhToen",
+                word: v.explains.join(" "),
+                options: zhOption,
+                correct: v.query,
+                query: v.query
                 
-        //     })
-        // }
+            })
+        }
 
-        // if (!v.voiceToen) {
-        //     result.push({
-        //         type: "voiceToen",
-        //         word: v.query,
-        //         options: enOption,
-        //         correct: v.explains.join(" ")
-        //     })
-        // }
+        if (!v.voiceToen) {
+            result.push({
+                type: "voiceToen",
+                word: v.query,
+                options: enOption,
+                correct: v.explains.join(" "),
+                query: v.query
+            })
+        }
     })
     return disorganizeArray(result)
 } 
