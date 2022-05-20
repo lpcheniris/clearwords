@@ -4,6 +4,7 @@ import Search from "./pages/Search"
 
 import './App.css';
 import Remember from './pages/Remember';
+import CheckRemember from './pages/CheckRemember';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
      <Routes>
        <Route path='/' element={<Search />}></Route>
        <Route path='/remember' element={<Remember />}></Route>
+       <Route path='/checkremember' element={<CheckRemember />}></Route>
      </Routes>
     </div>
   );

@@ -6,10 +6,10 @@ import { isEmpty } from "../utils"
 import styles from './Remember.module.css'
 
 export default function Remember() {
-    const [index, setIndex] = useState(0)
+    
     const dispatch = useAppDispatch()
     const rememberList = useAppSelector(selectRememberList);
-
+    const [index, setIndex] = useState(0)
     const currentRemember = rememberList[index]
     useEffect(() => {
         dispatch(wordListAsync())

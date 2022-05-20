@@ -14,7 +14,8 @@ export default function RememberItem(props: any) {
     const phoneticAudio = new Audio(getAudioUrl(data.word))
     useEffect(() => {
         setSelectOption("")
-        if(data.type=="voiceToen") {
+        // console.log(data)
+        if(data&&data.type=="voiceToen") {
             phoneticAudio.play()
         }
     }, [props.data])

@@ -17,7 +17,7 @@ const initialState: WordsState = {
 export const wordListAsync = createAsyncThunk(
   'word/fetchWordList',
   async () => {
-    const response = await fetch('/word').then(response => response.json());
+    const response = await fetch('/word/queryByCondition/remember').then(response => response.json());
     return response;
   }
 );
