@@ -38,7 +38,6 @@ export default function Search() {
             <button name='search' onClick={handleSearch}>Search</button>
             <button name='collect' onClick={handleFavorite}>Favorite </button>
             <div>{!isEmpty(queryData) ? <Query data={queryData} /> : <div></div>}</div>
-
             <footer>
                 <button onClick={ () => navigate("/remember")}>Remember</button>
                 <button onClick={ () => navigate("/checkremember")}>Check</button>

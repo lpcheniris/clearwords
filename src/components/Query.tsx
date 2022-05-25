@@ -13,9 +13,8 @@ export default function Query(props: any) {
             <div className={styles.query}>{data.query}</div>
             <div className={styles.sound}  onClick={handleClick}>
                 <AudioIcon className='icon' /> 
-                <div>/{data.phonetic}/</div>
-                </div>
-            
+            </div>
+            <div>/{data.phonetic}/</div>
             {data.explains.map((v: string, i:number) => <div key={i}>{ v }</div>)}
         </div>
         :
