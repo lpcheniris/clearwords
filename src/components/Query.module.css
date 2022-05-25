@@ -5,11 +5,17 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #3fecdc;
+   
     align-items: center;
     margin-top: 50px;
 }
 
 .sound {
     cursor: pointer;
+}
+
+.query {
+    color: #3fecdc;
+    font-size: 20px;
+    font-weight: bold;
 }

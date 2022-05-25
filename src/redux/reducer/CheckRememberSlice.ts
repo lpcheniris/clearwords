@@ -6,14 +6,12 @@ import { generateRememberList} from '../../utils'
 export interface WordsState {
 
   checkRememberList: [],
-  updateError: any,
-  checkRememberError: any,
+  checkRememberResult: any,
 }
 
 const initialState: WordsState = {
   checkRememberList: [],
-  updateError: null,
-  checkRememberError: null
+  checkRememberResult: null
 };
 export const getCheckRememnerListAsync = createAsyncThunk(
   'word/fetchWordListNotRemember',
@@ -41,7 +39,7 @@ export const checkRememberSlice = createSlice({
         state.checkRememberList = action.payload;
       })
       .addCase(handleRememberStatusAsync.fulfilled, (state: any, action: any) => {
-        state.checkRememberError = action.payload;
+        state.checkRememberResult = action.payload;
 
       })
   }

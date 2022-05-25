@@ -34,10 +34,12 @@ export const querySlice = createSlice({
   extraReducers: (builder: any) => {
     builder
       .addCase(queryAsync.fulfilled, (state: any, action: any) => {
-        const { query, translation, l, basic, isWord} = action.payload
-        let { explains, phonetic} = basic
-        explains = fixExplains(explains)
-        state.value = {query, translation, l, explains, phonetic, isWord};
+        if(action.payload.isWord) {
+          const { query, translation, l, basic, isWord} = action.payload
+          let { explains, phonetic} = basic
+          explains = fixExplains(explains)
+          state.value = {query, translation, l, explains, phonetic, isWord};
+        } 
       })
   },
 })

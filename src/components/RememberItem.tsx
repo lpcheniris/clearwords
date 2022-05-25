@@ -4,19 +4,23 @@ import { ReactComponent as AudioIcon } from '../assets/audio.svg';
 import { ReactComponent as CheckIcon } from '../assets/check.svg';
 import { ReactComponent as WrongIcon }  from '../assets/wrong.svg';
  
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function RememberItem(props: any) {
     const data = props.data
-    // console.log(data)
+    console.log(data)
     const [isRight, setIsRight] = useState(false)
     const [selectOption, setSelectOption] = useState("")
+    const soundRef = useRef(null)
     const phoneticAudio = new Audio(getAudioUrl(data.word))
+    // phoneticAudio.muted = true
     useEffect(() => {
+        console.log(soundRef.current)
         setSelectOption("")
         // console.log(data)
         if(data&&data.type=="voiceToen") {
             phoneticAudio.play()
+            // soundRef.current.click()
         }
     }, [props.data])
     function handleClick() {
@@ -46,7 +50,7 @@ export default function RememberItem(props: any) {
     return <div className={styles.rememberWrapper}>
         {data.type != "voiceToen" ?
             <div className={styles.word}>{data.word}</div> :
-            <div onClick={handleClick}><AudioIcon className='icon' />
+            <div ref={soundRef} onClick={handleClick}><AudioIcon className='icon' />
             </div>}
         <div>
             {data.options.map((v: string, i: number) =>

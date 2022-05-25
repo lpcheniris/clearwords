@@ -3,16 +3,16 @@ import { RootState } from '../store';
 import { generateRememberList} from '../../utils'
 
 
-export interface WordsState {
+export interface wordState {
   wordList: [],
   rememberList: [],
-  updateError: any
+  updateResult: any
 }
 
-const initialState: WordsState = {
+const initialState: wordState = {
   wordList: [],
   rememberList: [],
-  updateError: null
+  updateResult: {}
 };
 export const wordListAsync = createAsyncThunk(
   'word/fetchWordList',
@@ -30,8 +30,9 @@ export const updateWordStatusAsync = createAsyncThunk(
   }
 )
 
-export const wordsSlice = createSlice({
-  name: 'words',
+
+export const wordSlice = createSlice({
+  name: 'word',
   initialState,
   reducers: {},
   extraReducers: (builder: any) => {
@@ -41,14 +42,14 @@ export const wordsSlice = createSlice({
         state.rememberList = generateRememberList(action.payload)
       })
       .addCase(updateWordStatusAsync.fulfilled, (state: any, action: any) => {
-        state.updateError = action.payload;
+        state.updateResult = action.payload;
         
       })
   }
 })
 
-export const selectRememberList = (state: RootState) => state.words.rememberList;
-export const selectWordList = (state: RootState) => state.words.wordList;
+export const selectRememberList = (state: RootState) => state.word.rememberList;
+export const selectWordList = (state: RootState) => state.word.wordList;
 
-export default wordsSlice.reducer;
+export default wordSlice.reducer;
 
