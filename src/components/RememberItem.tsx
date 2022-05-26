@@ -33,7 +33,7 @@ export default function RememberItem(props: any) {
             setIsRight(true)
             setTimeout(() => {
                 props.handleSelectRight({query: data.query, status: { [data.type]: true }})
-            }, 1000)
+            }, 500)
         } else {
             setIsRight(false)
         }

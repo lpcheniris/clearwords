@@ -43,4 +43,5 @@ input:focus {
   height: 20px;
   display: inline-block;
   cursor: pointer;
+  margin-right: 10px;
 }

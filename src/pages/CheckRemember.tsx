@@ -19,14 +19,14 @@ export default function CheckRemember() {
       dispatch(handleRememberStatusAsync({query: currentCheckRemember.query, status: 'yes'})) 
       setTimeout(() => {
         setIndex(index + 1)
-    }, 1000)
+    }, 500)
 
     }
     const handleDoNotRemember = () => {
       dispatch(handleRememberStatusAsync({query: currentCheckRemember.query, status: 'no'}))
       setTimeout(() => {
         setIndex(index + 1)
-    }, 1000)
+    }, 500)
     }
     return <div className={styles.wrapper}>{
         currentCheckRemember && !isEmpty(currentCheckRemember) ? 
@@ -40,6 +40,6 @@ export default function CheckRemember() {
             </section>
             </div>
         ) 
-        : <div />
+        : <div className={styles.congratulations}> Congratulations, you have memorized all the words. </div>
         }</div>
 }

@@ -4,8 +4,9 @@ import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import {
     selectAllWordList, allWordListAsync, deleteWordListAsync
 } from '../redux/reducer/WordListSlice';
-
-import { isEmpty } from '../utils'
+import { handleRememberStatusAsync } from '../redux/reducer/CheckRememberSlice';
+import { ReactComponent as ForgetIcon }  from '../assets/forget.svg';
+import { ReactComponent as DeleteIcon } from '../assets/delete.svg'
 
 export default function WordList() {
     const [word, setWord] = useState("")
@@ -19,6 +20,12 @@ export default function WordList() {
             dispatch(allWordListAsync())
         })
     }
+    function handleForget(word: string) {
+        dispatch(handleRememberStatusAsync({
+            query: word,
+            status: "no"
+        }))
+    }
 
     return (
         <div className={styles.WordListWrapper}>
@@ -26,7 +33,8 @@ export default function WordList() {
                 <div className={styles.wordItem} key={i}>
                     <h3>{v.query} </h3>
                     <div className={styles.explains}> {`:  ${v.explains.join(" ")}`}</div>
-                    <button onClick={() => handleDelete(v.query)}>Delete</button>
+                   <DeleteIcon onClick={() => handleDelete(v.query)} />
+                  <ForgetIcon  onClick={() => handleForget(v.query)}/>
                 </div>)}
         </div>
     )
