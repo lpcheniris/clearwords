@@ -10,23 +10,28 @@ import {
 } from '../redux/reducer/QuerySlice';
 import Query from '../components/Query';
 import { isEmpty } from '../utils'
+import { useToast } from '../components/Toast';
 
 export default function Search() {
     const [word, setWord] = useState("")
+    const { updateToast } = useToast()
     const navigate = useNavigate()
     const queryData = useAppSelector(selectQuery);
     const dispatch = useAppDispatch();
     function handleEnter(e: any) {
         if (e.key === "Enter") {
-            dispatch(queryAsync(e.target.value))
+            loadData()
         }
     }
-    function handleSearch() {
+    function loadData() {
         dispatch(queryAsync(word))
     }
+    
     function handleFavorite() {
         if(!isEmpty(queryData)){
-            dispatch(favoriteAsync(queryData))
+            dispatch(favoriteAsync(queryData)).then((ok) => {
+                updateToast({type: "success", text: "successfully!", display: true})
+            })
         }
     }
     function handleInputChange(e:any) {
@@ -35,7 +40,7 @@ export default function Search() {
     return (
         <div className={styles.searchWrapper}>
             <input  type="text" onKeyUp={(e) => handleEnter(e)} onChange={handleInputChange}/>
-            <button name='search' onClick={handleSearch}>Search</button>
+            <button name='search' onClick={loadData}>Search</button>
             <button name='collect' onClick={handleFavorite}>Favorite </button>
             <div>{!isEmpty(queryData) ? <Query data={queryData} /> : <div></div>}</div>
             <footer>

@@ -7,9 +7,11 @@ import {
 import { handleRememberStatusAsync } from '../redux/reducer/CheckRememberSlice';
 import { ReactComponent as ForgetIcon }  from '../assets/forget.svg';
 import { ReactComponent as DeleteIcon } from '../assets/delete.svg'
+import { useToast } from '../components/Toast';
 
 export default function WordList() {
     const [word, setWord] = useState("")
+    const { updateToast } = useToast()
     const allWordList = useAppSelector(selectAllWordList);
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -18,13 +20,17 @@ export default function WordList() {
     function handleDelete(word: string) {
         dispatch(deleteWordListAsync(word)).then(() => {
             dispatch(allWordListAsync())
+        }).then((ok) => {
+            updateToast({type: "success", text: "successfully!", display: true})
         })
     }
     function handleForget(word: string) {
         dispatch(handleRememberStatusAsync({
             query: word,
             status: "no"
-        }))
+        })).then((ok) => {
+            updateToast({type: "success", text: "successfully!", display: true})
+        })
     }
 
     return (

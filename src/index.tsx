@@ -7,18 +7,19 @@ import { store } from './redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './theme.css';
-
+import { ToastProvider } from './components/Toast';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+   
+    <BrowserRouter>
+    <ToastProvider>
       <App />
+      </ToastProvider>
       </BrowserRouter>
-      
     </Provider>
   </React.StrictMode>
 );
