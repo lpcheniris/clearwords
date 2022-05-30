@@ -9,7 +9,7 @@ export default function Query(props: any) {
     function handleClick() {
         phoneticAudio.play()
     }
-    return (data.isWord == true ?
+    return (data.isWord === true ?
         <div className={styles.queryWrapper}>
             <div className={styles.query}>{data.query}</div>
             <div className={styles.sound}  onClick={handleClick}>

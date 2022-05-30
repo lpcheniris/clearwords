@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './WordList.module.css';
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import {
@@ -10,13 +10,13 @@ import { ReactComponent as DeleteIcon } from '../assets/delete.svg'
 import { useToast } from '../components/Toast';
 
 export default function WordList() {
-    const [word, setWord] = useState("")
+    // const [word, setWord] = useState("")
     const { updateToast } = useToast()
     const allWordList = useAppSelector(selectAllWordList);
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(allWordListAsync())
-    }, [])
+    }, [dispatch])
     function handleDelete(word: string) {
         dispatch(deleteWordListAsync(word)).then(() => {
             dispatch(allWordListAsync())

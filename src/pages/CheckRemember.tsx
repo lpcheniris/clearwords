@@ -13,7 +13,7 @@ export default function CheckRemember() {
     console.log(currentCheckRemember)
     useEffect(() => {
         dispatch(getCheckRememnerListAsync())
-    }, [])
+    }, [dispatch])
 
     const handleRemember =() => {
       dispatch(handleRememberStatusAsync({query: currentCheckRemember.query, status: 'yes'})) 

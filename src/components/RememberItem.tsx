@@ -15,22 +15,19 @@ export default function RememberItem(props: any) {
     const phoneticAudio = new Audio(getAudioUrl(data.word))
     // phoneticAudio.muted = true
     useEffect(() => {
-        console.log(soundRef.current)
         setSelectOption("")
-        // console.log(data)
-        if(data&&data.type=="voiceToen") {
+        console.log(data)
+        if(data && data.type === "voiceToen") {
             phoneticAudio.play()
             // soundRef.current.click()
         }
-    }, [props.data])
+    }, [data])
     function handleClick() {
         phoneticAudio.play()
     }
     function handleSelect(v: string) {
         setSelectOption(v)
-
         if(v === data.correct) {
-            setIsRight(true)
             setTimeout(() => {
                 props.handleSelectRight({query: data.query, status: { [data.type]: true }})
             }, 500)
@@ -48,7 +45,7 @@ export default function RememberItem(props: any) {
         }
     }
     return <div className={styles.rememberWrapper}>
-        {data.type != "voiceToen" ?
+        {data.type !== "voiceToen" ?
             <div className={styles.word}>{data.word}</div> :
             <div ref={soundRef} onClick={handleClick}><AudioIcon className='icon' />
             </div>}

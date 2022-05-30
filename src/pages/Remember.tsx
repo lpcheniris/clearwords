@@ -13,7 +13,7 @@ export default function Remember() {
     const currentRemember = rememberList[index]
     useEffect(() => {
         dispatch(wordListAsync())
-    }, [])
+    }, [dispatch])
     function handleSelectRight(status: object) {
         dispatch(updateWordStatusAsync(status))
         if (index < rememberList.length) {

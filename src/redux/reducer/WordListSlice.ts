@@ -1,8 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { generateRememberList} from '../../utils'
-
-
 export interface WordsState {
   allWordList: [],
  
